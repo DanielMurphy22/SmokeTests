@@ -2,7 +2,7 @@ import sys
 from github import Github
 import pandas as pd
 import xlrd
-
+import numpy as np
 #pip install xlrd, pip install pandas, pip install PyGithub if not already
 
 
@@ -33,8 +33,8 @@ USERNAME, PASSWORD = load_login_details("login.txt")
 # USERNAME = 'DanielMurphy22'
 # PASSWORD = '******'
 # The repository to add this issue to
-REPO_NAME = 'SmokeTests'
-REPO_OWNER = 'DanielMurphy22'
+REPO_NAME = 'mantid'
+REPO_OWNER = 'mantidproject'
 
 gh = Github(USERNAME, PASSWORD)
 repo = gh.get_user(REPO_OWNER).get_repo(REPO_NAME)
@@ -77,16 +77,30 @@ If you have any questions please contact the creator of this issue.
 '''
 print( "\nLoading Issues")
 df = pd.read_excel("issue_template.xlsx","issues")
-
+um = pd.read_excel("umbrella_issue_template.xlsx","issues")
 print( "\nCreating Issues")
+issue_numbers = np.zeros(25)
 for index, row in df.iterrows():
     title =  row['Title']
     additional_body = row['Additional Body Text'] 
-    gh_assignee = None
     my_body = body_text
     if pd.notnull(additional_body):
         my_body += "\n\n## Checklist/directions\n\n" + additional_body
-    print (title,gh_assignee,gh_milestone,gh_labels)
-#    issue = repo.create_issue(title, my_body, gh_assignee, gh_milestone, gh_labels) #COMMENT THIS OUT TO TEST BEFORE MAKING ISSUES
+    #print (title,gh_milestone,gh_labels)
+    issue = repo.create_issue(title, body = my_body, milestone = gh_milestone, labels = gh_labels) #COMMENT THIS OUT TO TEST BEFORE MAKING ISSUES
     print(issue.number, issue.title)
+    issue_numbers[index] = issue.number
 
+my_body = ""
+for index, row in um.iterrows():
+    additional_body = row['Additional Body Text']
+    if pd.notnull(row['Additional Body Text']):
+        my_body += additional_body
+        if  issue_numbers[index] != 0:
+            my_body += str(int(issue_numbers[index]))
+        my_body += "\n"
+my_body += "\n **Manually make this Umbrella into an Epic!** "       
+title = 'Smoke Testing Umbrella Issue'
+#print (title,gh_milestone,gh_labels)
+issue = repo.create_issue(title, body = my_body, milestone = gh_milestone, labels = gh_labels) #COMMENT THIS OUT TO TEST BEFORE MAKING ISSUES
+print(issue.number, issue.title)
