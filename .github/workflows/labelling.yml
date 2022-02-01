@@ -23,7 +23,7 @@ jobs:
           body: |
                 \@${{ github.event.sender.login }} Thank you for resolving and closing this support issue. Please add to this issue:  
                   
-                - a Resolved label (Bug, Advice, etc.) 
+                - a Resolved label (Bug, Advice, etc.) [Contact the Support Manager if a new Resolved label is needed]
                 - a short comment explaining the solution (Remember to link to any resulting issues in the mantid or mslice repos)  
                  
                 _To avoid this notification in future, please add a Resolved label before closing._  
