@@ -31,3 +31,5 @@ jobs:
           comment: |
             This is a multi-line test comment
             - With GitHub **Markdown** :sparkles:
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
