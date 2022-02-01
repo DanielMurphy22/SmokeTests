@@ -24,3 +24,4 @@ jobs:
             This is a multi-line test comment
             - With GitHub **Markdown** :sparkles:
           reactions: '+1'
+          token: ${{ secrets.GITHUB_TOKEN }}
