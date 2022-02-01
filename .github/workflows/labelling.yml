@@ -14,12 +14,10 @@ jobs:
       - name: Label closed issues
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
-          add-labels: "triage"
+          add-labels: "Needs Close Explanation and Label"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.issue.number }}
-          body: "This works!!"
-#           reactions: '+1'
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          body: "Thank you for resolving and closing this support issue. Please add a Resolved: label (Bug, Advice, etc.) and a comment breifly explaining the solution and linking to any resulting issues. "
