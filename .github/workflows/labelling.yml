@@ -20,9 +20,10 @@ jobs:
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.issue.number }}
-          body: \@${{ github.event.sender.login }} Thank you for resolving and closing this support issue. Please add to this issue  
-                \n\n  
-                - a Resolved label (Bug, Advice, etc.)  \n
+          body: |
+                \@${{ github.event.sender.login }} Thank you for resolving and closing this support issue. Please add to this issue  
+                  
+                - a Resolved label (Bug, Advice, etc.) 
                 - a short comment explaining the solution. (Remember to link to any resulting issues in the mantid or mslice repos)  
-                \n\n  
+                 
                 _To avoid this notification in future, please add a Resolved label before closing._  
