@@ -20,4 +20,4 @@ jobs:
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.issue.number }}
-          body: ${{ github.event.sender.login }} Thank you for resolving and closing this support issue. Please add a Resolved label (Bug, Advice, etc.) and a comment breifly explaining the solution and linking to any resulting issues. 
+          body: \@${{ github.event.sender.login }} Thank you for resolving and closing this support issue. Please add a Resolved label (Bug, Advice, etc.) and a comment breifly explaining the solution and linking to any resulting issues. 
