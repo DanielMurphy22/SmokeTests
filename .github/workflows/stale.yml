@@ -35,4 +35,4 @@ jobs:
           close-issue-message: |
              This support issue has been closed automatically. If this is still active
              then re-open this issue with a comment on the current steps towards resolving the issue.
-          close_issue-label: 'Needs Close Explanation and Resolved Label'
+          close-issue-label: 'Needs Close Explanation and Resolved Label'
