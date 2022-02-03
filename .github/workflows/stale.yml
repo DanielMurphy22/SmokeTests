@@ -1,0 +1,38 @@
+# This workflow warns and then closes issues and PRs that have had no activity for a specified amount of time.
+#
+# You can adjust the behavior by modifying this file.
+# For more information, see:
+# https://github.com/actions/stale
+name: Mark stale issues and pull requests
+
+on:
+  schedule:
+  - cron: '30 11 * * *'
+
+jobs:
+  stale:
+
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/stale@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          days-before-stale: 14
+          days-before-close: 5
+          stale-issue-message: |
+             This issue has been automatically marked as stale because it has not had
+             activity in 14 days. It will be closed in 5 days if no further activity occurs.
+             
+             Please comment with an update on this support issue. This may require contacting the affected user.
+             If the user stops responding then you may close the issue with the _Resolved: User Stopped Responding_ label
+
+             If this issue arises again, then feel free to reopen it.
+          stale-issue-label: 'Stale'
+          close-issue-message: |
+             This support issue has been closed automatically. If this is still active
+             then re-open this issue with a comment on the current steps towards resolving the issue.
+          close_issue-label: 'Needs Close Explanation and Resolved Label'
